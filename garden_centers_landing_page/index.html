@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YourGreenhouses — Exclusive Garden Center Dealer Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a2e1a;
+    --green-mid: #2d5a27;
+    --green-accent: #4a8c3f;
+    --green-light: #7bbf6a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d4;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #7a7a7a;
+    --max: 760px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(26,46,26,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-phone { font-size: 0.8rem; color: rgba(245,240,232,0.45); }
+  .nav-phone strong { color: var(--gold-light); font-weight: 600; }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 9px 22px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── SHARED CONTAINER ── */
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-dark);
+    padding: 120px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(74,140,63,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold-light);
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-light); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.8;
+    max-width: 580px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+  }
+  .hero-sub strong { color: var(--cream); font-weight: 600; }
+
+  /* ── HERO VIDEO ── */
+  .hero-video {
+    position: relative;
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto 36px;
+    aspect-ratio: 16/9;
+    background: #0d1a0d;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(245,240,232,0.08);
+    cursor: pointer;
+  }
+  .hero-video::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(74,140,63,0.1), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-video-tag {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold-light);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    z-index: 2;
+  }
+  .hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 2;
+  }
+  .hero-video-play {
+    width: 60px; height: 60px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--green-dark);
+    box-shadow: 0 4px 24px rgba(201,168,76,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-video:hover .hero-video-play {
+    transform: scale(1.08);
+    box-shadow: 0 6px 32px rgba(201,168,76,0.65);
+  }
+  .hero-video-caption {
+    background: rgba(26,46,26,0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(245,240,232,0.1);
+    color: rgba(245,240,232,0.55);
+    font-size: 0.74rem;
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  /* ── HERO ACTIONS ── */
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 15px 34px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  }
+  .btn-secondary {
+    color: rgba(245,240,232,0.55);
+    font-size: 0.88rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .btn-secondary:hover { color: var(--cream); }
+  .btn-secondary::after { content: '↓'; }
+
+  /* ── PROOF STRIP ── */
+  .proof-strip {
+    background: var(--cream-dark);
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(26,46,26,0.08);
+  }
+  .proof-strip-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .proof-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-mid);
+    font-size: 0.83rem;
+    font-weight: 500;
+  }
+  .proof-icon {
+    width: 28px; height: 28px;
+    background: var(--green-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    color: var(--green-light);
+  }
+
+  /* ── STAT ROW ── */
+  .stat-section {
+    background: var(--green-dark);
+    padding: 0;
+    border-bottom: 1px solid rgba(245,240,232,0.06);
+  }
+  .stat-row {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-cell {
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(245,240,232,0.07);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(245,240,232,0.38);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── GENERIC SECTION ── */
+  .feed-section {
+    padding: 72px 24px;
+  }
+  .feed-section-dark {
+    background: var(--green-dark);
+    padding: 72px 24px;
+  }
+  .feed-section-alt {
+    background: var(--cream-dark);
+    padding: 72px 24px;
+  }
+  .feed-section-white {
+    background: var(--white);
+    padding: 72px 24px;
+  }
+  .feed-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  /* ── SECTION LABELS/TITLES ── */
+  .section-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .feed-section-dark .section-label { color: var(--gold-light); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .feed-section-dark .section-title { color: var(--cream); }
+  .section-body {
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .feed-section-dark .section-body { color: rgba(245,240,232,0.6); }
+  .section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--green-accent);
+    margin: 20px auto 40px;
+    border-radius: 2px;
+  }
+  .feed-section-dark .section-divider { background: var(--gold); }
+
+  /* ── MARKET OPPORTUNITY ── */
+  .trend-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .trend-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border: 1px solid rgba(26,46,26,0.06);
+    transition: all 0.2s;
+  }
+  .trend-card:hover {
+    border-color: var(--green-accent);
+    box-shadow: 0 4px 16px rgba(26,46,26,0.06);
+  }
+  .trend-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+  .trend-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 5px;
+  }
+  .trend-card p { font-size: 0.87rem; color: var(--text-mid); line-height: 1.7; }
+
+  .opportunity-callout {
+    background: var(--green-dark);
+    border-radius: 14px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .oc-left { text-align: center; flex-shrink: 0; }
+  .oc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--green-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .oc-label {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    max-width: 120px;
+  }
+  .oc-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(245,240,232,0.1);
+    flex-shrink: 0;
+  }
+  .oc-right { flex: 1; min-width: 200px; }
+  .oc-right p {
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.75;
+  }
+  .oc-right p strong { color: var(--cream); }
+
+  /* ── MARGIN TABLE ── */
+  .margin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+  }
+  .margin-table thead tr { border-bottom: 1px solid rgba(245,240,232,0.12); }
+  .margin-table th {
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.35);
+    font-weight: 500;
+  }
+  .margin-table td {
+    padding: 16px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(245,240,232,0.06);
+    color: rgba(245,240,232,0.75);
+  }
+  .margin-table tbody tr:hover { background: rgba(255,255,255,0.03); }
+  .margin-table .hl { background: rgba(201,168,76,0.08); }
+  .margin-table .hl td { color: var(--cream); font-weight: 600; border-bottom: none; }
+  .badge-best {
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .math-callout {
+    background: rgba(74,140,63,0.1);
+    border-left: 3px solid var(--green-light);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin-top: 28px;
+  }
+  .math-callout p { color: rgba(245,240,232,0.7); font-size: 0.9rem; line-height: 1.75; }
+  .math-callout strong { color: var(--green-light); }
+
+  /* ── HOW IT WORKS ── */
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .how-step {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    border: 1px solid rgba(26,46,26,0.06);
+    transition: all 0.2s;
+  }
+  .how-step:hover {
+    border-color: var(--green-accent);
+    box-shadow: 0 6px 20px rgba(26,46,26,0.07);
+  }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(26,46,26,0.07);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+  }
+  .step-icon {
+    width: 40px; height: 40px;
+    background: var(--green-dark);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .step-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+  .step-content p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+  .step-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(74,140,63,0.09);
+    color: var(--green-accent);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 100px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── WHO IT'S FOR ── */
+  .who-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .who-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .who-card:hover { border-color: var(--green-accent); box-shadow: 0 4px 16px rgba(26,46,26,0.06); }
+  .who-emoji { font-size: 1.7rem; flex-shrink: 0; }
+  .who-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .who-card p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── GUARANTEE CARDS ── */
+  .g-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .g-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,240,232,0.08);
+    border-radius: 14px;
+    padding: 26px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .g-card:hover { border-color: rgba(123,191,106,0.2); }
+  .g-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(123,191,106,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .g-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+  .g-covers {
+    font-size: 0.68rem;
+    color: rgba(245,240,232,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .g-body { font-size: 0.87rem; color: rgba(245,240,232,0.62); line-height: 1.75; }
+  .g-body strong { color: var(--green-light); }
+
+  /* ── OBJECTIONS ── */
+  .obj-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .obj-card {
+    padding: 20px 22px;
+    background: var(--cream);
+    border-radius: 10px;
+    border-left: 3px solid var(--green-accent);
+  }
+  .obj-card h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-mid); margin-bottom: 6px; font-style: italic; }
+  .obj-card p { font-size: 0.87rem; color: var(--text-dark); line-height: 1.65; }
+
+  /* ── TIERS ── */
+  .tier-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+    align-items: start;
+  }
+  .tier-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .tier-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green-light);
+  }
+  .tier-card.featured { background: var(--green-dark); border-color: var(--green-dark); transform: translateY(-8px); }
+  .tier-card.featured::before { background: var(--gold); height: 4px; }
+  .tier-card:hover:not(.featured) { border-color: var(--green-accent); box-shadow: 0 8px 24px rgba(26,46,26,0.08); }
+  .tier-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .tier-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 0.63rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .tier-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+  .tier-card.featured .tier-name { color: var(--cream); }
+  .tier-right { text-align: right; }
+  .tier-discount {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--green-accent);
+    line-height: 1;
+  }
+  .tier-card.featured .tier-discount { color: var(--green-light); }
+  .tier-disc-label { font-size: 0.72rem; color: var(--text-light); }
+  .tier-card.featured .tier-disc-label { color: rgba(245,240,232,0.4); }
+  .tier-divider { height: 1px; background: rgba(26,46,26,0.07); margin-bottom: 16px; }
+  .tier-card.featured .tier-divider { background: rgba(245,240,232,0.08); }
+  .tier-features { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .tier-features li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 0.85rem; color: var(--text-mid); line-height: 1.5;
+  }
+  .tier-card.featured .tier-features li { color: rgba(245,240,232,0.68); }
+  .tier-features li::before { content: '✓'; color: var(--green-accent); font-weight: 700; flex-shrink: 0; }
+  .tier-card.featured .tier-features li::before { color: var(--green-light); }
+  .tier-min { font-size: 0.74rem; color: var(--text-light); padding-top: 12px; border-top: 1px solid rgba(26,46,26,0.06); }
+  .tier-card.featured .tier-min { color: rgba(245,240,232,0.35); border-color: rgba(245,240,232,0.07); }
+
+  /* ── APPLY ── */
+  .apply-section {
+    background: var(--green-dark);
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .apply-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% -10%, rgba(74,140,63,0.18), transparent 55%);
+    pointer-events: none;
+  }
+  .apply-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .apply-section .section-label { color: var(--gold-light); }
+  .apply-section .section-title { color: var(--cream); }
+  .apply-section .section-body { color: rgba(245,240,232,0.6); margin-bottom: 40px; }
+
+  /* What happens next */
+  .next-steps { display: flex; flex-direction: column; margin-bottom: 48px; }
+  .next-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 24px;
+  }
+  .next-step:last-child { padding-bottom: 0; }
+  .next-step::after {
+    content: '';
+    position: absolute;
+    left: 16px; top: 36px; bottom: 0;
+    width: 1px;
+    background: rgba(245,240,232,0.08);
+  }
+  .next-step:last-child::after { display: none; }
+  .ns-num {
+    width: 32px; height: 32px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .ns-content h4 { font-size: 0.88rem; font-weight: 600; color: var(--cream); margin-bottom: 2px; }
+  .ns-content p { font-size: 0.8rem; color: rgba(245,240,232,0.45); line-height: 1.55; }
+  .ns-time {
+    display: inline-block;
+    background: rgba(123,191,106,0.1);
+    color: var(--green-light);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Form */
+  .dealer-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,240,232,0.1);
+    border-radius: 16px;
+    padding: 36px;
+    backdrop-filter: blur(10px);
+  }
+  .form-live-badge {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    background: rgba(123,191,106,0.07);
+    border: 1px solid rgba(123,191,106,0.14);
+    border-radius: 8px;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--green-light);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+  .live-text { font-size: 0.78rem; color: rgba(245,240,232,0.6); line-height: 1.4; }
+  .live-text strong { color: var(--green-light); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+  .form-group label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(245,240,232,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(245,240,232,0.11);
+    border-radius: 7px;
+    padding: 12px 14px;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input::placeholder { color: rgba(245,240,232,0.22); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { outline: none; border-color: var(--green-light); }
+  .form-group select option { background: var(--green-dark); color: var(--cream); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-scarcity {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.76rem;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 12px;
+  }
+  .form-scarcity strong { color: var(--gold-light); }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--green-dark);
+    border: none;
+    padding: 16px;
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .form-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  }
+  .form-disclaimer {
+    font-size: 0.7rem;
+    color: rgba(245,240,232,0.25);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0d160d;
+    padding: 32px 24px;
+    border-top: 1px solid rgba(245,240,232,0.05);
+  }
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: rgba(245,240,232,0.4); }
+  .footer-logo span { color: var(--gold); }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.78rem; color: rgba(245,240,232,0.28); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(245,240,232,0.6); }
+
+  .footer-warehouses {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .footer-warehouses-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.25);
+    margin-bottom: 4px;
+  }
+  .footer-warehouses p {
+    font-size: 0.72rem;
+    color: rgba(245,240,232,0.28);
+    line-height: 1.6;
+    text-align: right;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner > * { animation: fadeUp 0.55s ease both; }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.22s; }
+  .hero-inner > *:nth-child(4) { animation-delay: 0.3s; }
+  .hero-inner > *:nth-child(5) { animation-delay: 0.38s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-phone { display: none; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell { border-right: none; border-bottom: 1px solid rgba(245,240,232,0.07); }
+    .stat-cell:nth-child(odd) { border-right: 1px solid rgba(245,240,232,0.07); }
+    .stat-cell:last-child { border-bottom: none; }
+    .stat-cell:nth-last-child(2) { border-bottom: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .dealer-form { padding: 24px 18px; }
+    .proof-strip-inner { justify-content: flex-start; gap: 16px; }
+    .tier-cards { grid-template-columns: 1fr; }
+    .tier-card.featured { transform: none; }
+    .tier-top { flex-direction: column; gap: 8px; }
+    .tier-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Your<span>Greenhouses</span></div>
+  <div class="nav-right">
+    <div class="nav-phone">Questions? <strong>1-786-982-8491</strong></div>
+    <a href="#apply" class="nav-cta">Apply For Partnership</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Exclusive Garden Center Dealer Program</div>
+    <h1>The Greenhouse Revenue<br>Your Garden Center<br><em>Is Missing.</em></h1>
+    <p class="hero-sub">
+      We sell <strong>$3M+ of greenhouses every month</strong> direct to US consumers. Your garden center customers are already buying — just not from you. Become the only Exclusive YourGreenhouses Dealer in your county and capture that margin locally.
+    </p>
+
+    <!-- VIDEO -->
+    <div class="hero-video">
+      <div class="hero-video-tag">From Our Team</div>
+      <div class="hero-video-overlay">
+        <div class="hero-video-play">▶</div>
+        <div class="hero-video-caption">Watch before your territory is claimed — 2 mins</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#apply" class="btn-primary">Apply For Partnership Assessment →</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS ROW -->
+<div class="stat-section">
+  <div class="stat-row">
+    <div class="stat-cell">
+      <div class="stat-number">100K+</div>
+      <div class="stat-label">US units sold</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">4.7★</div>
+      <div class="stat-label">2,300+ reviews</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">15yr</div>
+      <div class="stat-label">Manufacturing</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">10yr</div>
+      <div class="stat-label">Warranty</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="proof-item"><div class="proof-icon">🏭</div> Factory-direct — no middleman</div>
+    <div class="proof-item"><div class="proof-icon">🚚</div> Direct fulfilment — we handle logistics</div>
+    <div class="proof-item"><div class="proof-icon">📞</div> We handle all post-sale support</div>
+    <div class="proof-item"><div class="proof-icon">🔒</div> Regional exclusivity available</div>
+  </div>
+</div>
+
+<!-- MARKET OPPORTUNITY -->
+<div class="feed-section">
+  <div class="feed-inner">
+    <span class="section-label">The Opportunity</span>
+    <h2 class="section-title">The Demand Is Already<br>There. Your Garden Center<br>Customers Are Proof.</h2>
+    <p class="section-body">Your customers are already spending big on their outdoor spaces. Greenhouses are the natural next purchase — and right now they're buying them online because no local garden center stocks a quality product.</p>
+    <div class="section-divider"></div>
+
+    <div class="trend-cards">
+      <div class="trend-card">
+        <div class="trend-icon">🌱</div>
+        <div>
+          <h4>Garden Center Customers Are Natural Greenhouse Buyers</h4>
+          <p>Anyone spending money at your garden center on plants, soil, and outdoor living products is already a greenhouse customer waiting to happen. Greenhouses extend the growing season year-round and turn casual gardeners into serious growers. It's the highest-ticket natural upsell to everything you already sell.</p>
+        </div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-icon">🏡</div>
+        <div>
+          <h4>Outdoor Living Spend Is At An All-Time High</h4>
+          <p>Americans spent over $50B on outdoor home improvement in recent years. A greenhouse isn't just a gardening tool — it's a permanent backyard structure that adds property value. Your customers are already in that spending mindset every time they walk through your door.</p>
+        </div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-icon">🔍</div>
+        <div>
+          <h4>They're Searching Locally. Nobody Is Answering.</h4>
+          <p>We sell $3M+ of greenhouses every month online to US consumers — people who would have preferred to buy from a trusted local garden center if one stocked it. That gap is your opportunity. Be the local expert in your county and capture demand that's already there.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="opportunity-callout">
+      <div class="oc-left">
+        <div class="oc-num">$3M+</div>
+        <div class="oc-label">sold online per month in the US</div>
+      </div>
+      <div class="oc-divider"></div>
+      <div class="oc-right">
+        <p>Every one of those sales is a customer in your market who bought from us instead of their local garden center. <strong>You're not creating demand. You're intercepting it.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE MATH -->
+<div class="feed-section-dark">
+  <div class="feed-inner">
+    <span class="section-label">The Numbers</span>
+    <h2 class="section-title">A Single SKU Addition.<br>Six Figures Annually.</h2>
+    <p class="section-body">From customers already walking through your garden center door.</p>
+    <div class="section-divider"></div>
+    <div class="math-callout">
+      <p>A garden center moving just <strong>10 units per month</strong> — less than 1% of what we move online — generates over <strong>$110,000 in gross margin per year</strong> from existing foot traffic. No new customers. No new marketing. Just a product your customers are already looking for, finally available locally.</p>
+    </div>
+    <div style="text-align:center; margin-top: 36px;">
+      <a href="#apply" class="btn-primary" style="display:inline-block;">Apply For Partnership Assessment →</a>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="feed-section">
+  <div class="feed-inner">
+    <span class="section-label">The Process</span>
+    <h2 class="section-title">From Application to<br>Assessment Call in 24 Hours</h2>
+    <p class="section-body">We review every application personally. Qualified garden center owners are contacted within 24 hours to schedule their partnership assessment.</p>
+    <div class="section-divider"></div>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-icon">📋</div>
+        <div class="step-content">
+          <h3>Submit Your Application</h3>
+          <p>Fill out the short form below. Tell us about your garden center, your market, and your current product lines. We review every application personally to assess territory fit and partnership potential.</p>
+          <div class="step-time">⚡ Takes less than 2 minutes</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-icon">🤝</div>
+        <div class="step-content">
+          <h3>Partnership Assessment Call</h3>
+          <p>If your application is a strong fit, a member of our partnerships team will contact you within 24 hours to schedule your 15-minute assessment call. We walk you through the programme, confirm your territory, answer every question, and get your first order placed.</p>
+          <div class="step-time">📅 Within 24 hours of application</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-icon">🚀</div>
+        <div class="step-content">
+          <h3>Territory Confirmed. Partnership Activated.</h3>
+          <p>Approved garden center partners receive their dealer kit within 48 hours — product assets, sales materials, staff training guides, and everything needed to start selling immediately. First units delivered within standard lead time.</p>
+          <div class="step-time">📦 Live within 48 hours of approval</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GUARANTEES -->
+<div class="feed-section-dark">
+  <div class="feed-inner">
+    <span class="section-label">Why This Works For Garden Centers</span>
+    <h2 class="section-title">The Case For Partnership.<br>Built On Evidence.</h2>
+    <p class="section-body">You're not taking a chance on an unknown product. The market has already decided.</p>
+    <div class="section-divider"></div>
+
+    <div class="g-cards">
+      <div class="g-card">
+        <div class="g-icon">🌿</div>
+        <div>
+          <div class="g-title">Your Customers Already Want This</div>
+          <div class="g-covers">100,000+ units sold to US consumers</div>
+          <p class="g-body">We've sold over 100,000 Scandinavian-engineered greenhouses to US consumers — and garden center customers are among the most frequent buyers. <strong>You're not introducing a new category. You're finally stocking what your customers are already asking for.</strong></p>
+        </div>
+      </div>
+      <div class="g-card">
+        <div class="g-icon">📣</div>
+        <div>
+          <div class="g-title">We Drive The Demand. You Capture It Locally.</div>
+          <div class="g-covers">$50,000 in monthly US consumer advertising</div>
+          <p class="g-body">We spend $50,000 every month on consumer advertising across the US market. Every campaign we run creates demand that flows into your county. <strong>You don't need to educate the market — we've already done it.</strong> Your garden center is simply the local answer when they come looking.</p>
+        </div>
+      </div>
+      <div class="g-card">
+        <div class="g-icon">⭐</div>
+        <div>
+          <div class="g-title">A Product Your Garden Center Can Stand Behind.</div>
+          <div class="g-covers">4.7 stars — 2,300+ verified reviews</div>
+          <p class="g-body">15 years of manufacturing. 100,000+ units sold. 4.7 stars across 2,300+ reviews. <strong>This isn't a product you need to convince customers to trust.</strong> It earns that trust every time. Your garden center's reputation stays clean because the product backs it up.</p>
+        </div>
+      </div>
+      <div class="g-card">
+        <div class="g-icon">🎯</div>
+        <div>
+          <div class="g-title">We're As Selective As You Are.</div>
+          <div class="g-covers">Every application reviewed personally</div>
+          <p class="g-body">We don't approve every garden center that applies. We assess each partner for territory fit, business profile, and growth potential. <strong>When we say yes to you, we're backing that decision with our brand, our marketing, and our full support.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIERS -->
+<div class="feed-section">
+  <div class="feed-inner" style="text-align: center;">
+    <span class="section-label">Partnership Levels</span>
+    <h2 class="section-title">A Structure Built To<br>Grow With Your Garden Center.</h2>
+    <div class="section-divider"></div>
+    <p class="section-body" style="max-width: 520px; margin: 0 auto 36px;">Partnership levels start at 25 units. We'll walk you through the right fit for your garden center on your assessment call — including territory availability, margin structure, and what getting started actually looks like.</p>
+    <a href="#apply" class="btn-primary" style="display:inline-block;">Apply For Partnership Assessment →</a>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<div class="feed-section-white">
+  <div class="feed-inner">
+    <span class="section-label">Built To Protect Every Partner</span>
+    <h2 class="section-title">Every Question.<br>Answered Honestly.</h2>
+    <p class="section-body" style="margin-bottom: 32px;">We're not looking for resellers. We're building a national network of exclusive dealers who grow with us. Every partner we add is carefully qualified — because who we bring in directly affects everyone already in the network.</p>
+    <div class="section-divider"></div>
+
+    <div class="obj-cards">
+      <div class="obj-card">
+        <h4>"What if the units don't sell fast enough?"</h4>
+        <p>Over 100,000 customers have already bought from us and are actively sending referrals. We spend $50,000 a month driving that demand nationally. You're not creating demand — you're the local option for customers who are already looking.</p>
+      </div>
+      <div class="obj-card">
+        <h4>"My staff know nothing about greenhouses."</h4>
+        <p>Neither did any partner before joining. Every exclusive dealer gets complete training materials, spec sheets, and ready-to-use sales scripts. You get everything that already works — from day one.</p>
+      </div>
+      <div class="obj-card">
+        <h4>"What about complaints after the sale?"</h4>
+        <p>Not your problem. Every warranty claim and post-sale issue is handled entirely by our US-based support team. A 10-year warranty backs every unit. Your reputation stays clean.</p>
+      </div>
+      <div class="obj-card">
+        <h4>"You sell online — does that compete with my garden center?"</h4>
+        <p>No. Our online presence builds the brand trust your customers arrive with. Every campaign we run drives local demand straight to our exclusive dealers. When our network grows, every partner in it grows with it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLY -->
+<div class="apply-section" id="apply">
+  <div class="apply-inner">
+    <span class="section-label">Apply For Partnership</span>
+    <h2 class="section-title">We Don't Work With Everyone.<br>Apply To Assess Your Fit.</h2>
+    <p class="section-body">One exclusive garden center partner per county. We review every application personally. Qualified applicants are contacted within 24 hours to schedule their partnership assessment call.</p>
+    <div class="section-divider"></div>
+
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="ns-num">1</div>
+        <div class="ns-content">
+          <h4>Submit your application</h4>
+          <p>Tell us about your garden center and your market. Takes less than 2 minutes.</p>
+          <span class="ns-time">Right now</span>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">2</div>
+        <div class="ns-content">
+          <h4>Application reviewed personally</h4>
+          <p>Every application is assessed for territory fit and partnership potential. No automated responses.</p>
+          <span class="ns-time">Within 24 hours</span>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">3</div>
+        <div class="ns-content">
+          <h4>Partnership assessment call</h4>
+          <p>Qualified garden center owners are contacted to schedule a 15-minute assessment call. We confirm territory availability, walk through the programme, and answer every question honestly.</p>
+          <span class="ns-time">Same day or next morning</span>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="ns-num">4</div>
+        <div class="ns-content">
+          <h4>Territory confirmed. Partnership activated.</h4>
+          <p>Approved partners receive their full dealer kit within 48 hours. Your territory is locked. Your margin starts immediately.</p>
+          <span class="ns-time">Within 48 hours of approval</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dealer-form">
+      <div class="form-live-badge">
+        <div class="live-dot"></div>
+        <div class="live-text">
+          <strong>Applications reviewed personally — not by a bot</strong><br>
+          Qualified garden center owners contacted within 24 hours to schedule assessment call.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Garden Center Name</label>
+        <input type="text" placeholder="Smith's Garden Center">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City / County</label>
+          <input type="text" placeholder="Dallas, TX">
+        </div>
+        <div class="form-group">
+          <label>Annual Revenue</label>
+          <select>
+            <option value="" disabled selected>Approx. range</option>
+            <option>$500K – $1M</option>
+            <option>$1M – $5M</option>
+            <option>$5M – $10M</option>
+            <option>$10M+</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="john@smithsgardencenter.com">
+      </div>
+      <div class="form-group">
+        <label>Best Phone Number</label>
+        <input type="tel" placeholder="+1 (555) 000-0000">
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Business</label>
+        <textarea placeholder="Walk us through your garden center — your current product lines, your customers, and why you're the right fit. This is your opportunity to make your case."></textarea>
+      </div>
+      <div class="form-scarcity">🔒 <span><strong>One garden center partner per county.</strong> Submit your application to check territory availability.</span></div>
+      <button class="form-submit" type="submit">Apply For Partnership Assessment →</button>
+      <p class="form-disclaimer">We review every application personally. Qualified applicants will be contacted within 24 hours to schedule their 15-minute partnership assessment call. One exclusive partner per county.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Your<span>Greenhouses</span> — Exclusive Dealer Program</div>
+    <div class="footer-warehouses">
+      <div class="footer-warehouses-label">Warehouse Locations</div>
+      <p>1150 McCaleb Rd, Ste 200, Montgomery, TX 77316</p>
+      <p>320 Elizabeth Ave, Newark, NJ 07112</p>
+    </div>
+  </div>
+</footer>
