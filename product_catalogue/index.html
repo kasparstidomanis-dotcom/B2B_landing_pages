@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YourGreenhouses — Dealer Product Lineup</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark:   #1a2e1a;
+    --green-mid:    #2d5a27;
+    --green-accent: #4a8c3f;
+    --green-light:  #7bbf6a;
+    --cream:        #f5f0e8;
+    --cream-dark:   #ede5d4;
+    --gold:         #c9a84c;
+    --gold-light:   #e8c96a;
+    --white:        #ffffff;
+    --text-dark:    #1a1a1a;
+    --text-mid:     #4a4a4a;
+    --text-light:   #7a7a7a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+  /* ── HEADER ── */
+  header {
+    background: rgba(26,46,26,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    padding: 18px 48px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 200;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo img { display: none; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--cream); }
+  .header-badge {
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 14px; border-radius: 4px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-dark); padding: 72px 48px 52px;
+    text-align: center; position: relative; overflow: hidden;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(74,140,63,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold-light); padding: 6px 16px; border-radius: 100px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .hero-label::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 54px); font-weight: 900; color: var(--cream); line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .hero h1 em { font-style: italic; color: var(--green-light); }
+  .hero p { font-size: 15px; color: rgba(245,240,232,0.62); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+  .hero p strong { color: var(--cream); font-weight: 600; }
+
+  /* ── STATS ── */
+  .stats-section { background: var(--green-dark); border-bottom: 1px solid rgba(245,240,232,0.06); }
+  .stats-row { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+  .stat { text-align: center; padding: 24px 20px; border-right: 1px solid rgba(245,240,232,0.07); }
+  .stat:last-child { border-right: none; }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--green-light); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 10px; color: rgba(245,240,232,0.38); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+
+  /* ── TIER LEGEND ── */
+  .tier-section { background: var(--cream-dark); padding: 52px 48px 0; }
+  .tier-inner { max-width: 900px; margin: 0 auto; padding-bottom: 52px; }
+  .section-label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-accent); margin-bottom: 10px; text-align: center; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; line-height: 1.2; color: var(--green-dark); margin-bottom: 10px; text-align: center; }
+  .section-body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; text-align: center; max-width: 520px; margin: 0 auto; }
+  .section-divider { width: 36px; height: 2px; background: var(--green-accent); margin: 16px auto 32px; border-radius: 2px; }
+
+  .tier-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .tier-card {
+    background: var(--white); border: 1px solid rgba(26,46,26,0.08);
+    border-radius: 12px; padding: 22px 20px;
+    position: relative; overflow: hidden; transition: all 0.2s;
+  }
+  .tier-card:hover { border-color: var(--green-accent); box-shadow: 0 4px 16px rgba(26,46,26,0.08); }
+  .tier-card.active-tier { border-color: var(--green-accent); box-shadow: 0 4px 16px rgba(74,140,63,0.15); }
+  .tier-card.active-tier::after { content: '● ACTIVE'; position: absolute; top: 12px; right: 14px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; color: var(--green-accent); }
+  .tier-card-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--green-dark); margin-bottom: 3px; }
+  .tier-card-range { font-size: 0.78rem; color: var(--text-light); margin-bottom: 12px; }
+  .tier-card-margin { font-size: 1.7rem; font-weight: 700; color: var(--green-accent); line-height: 1; }
+  .tier-card-margin span { font-size: 0.78rem; font-weight: 400; color: var(--text-light); margin-left: 3px; }
+
+  /* ── PRODUCT SECTIONS ── */
+  .products-section { padding: 52px 48px 0; background: var(--cream); }
+  .products-section-alt { padding: 52px 48px 0; background: var(--cream-dark); }
+  .products-inner { max-width: 900px; margin: 0 auto; }
+
+  /* ── POLYCARBONATE CARD ── */
+  .product-card {
+    background: var(--white); border: 1px solid rgba(26,46,26,0.08);
+    border-radius: 14px; overflow: hidden;
+    display: grid; grid-template-columns: 380px 1fr;
+    min-height: 360px; margin-bottom: 16px;
+    transition: all 0.25s; position: relative;
+  }
+  .product-card:hover { border-color: var(--green-accent); box-shadow: 0 6px 24px rgba(26,46,26,0.08); }
+  .product-card.has-qty { border-color: var(--green-accent); box-shadow: 0 4px 20px rgba(74,140,63,0.15); }
+  .prod-image { overflow: hidden; background: #0d1a0d; position: relative; }
+  .prod-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
+  .product-card:hover .prod-image img { transform: scale(1.03); }
+
+  .prod-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 5;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 100px;
+  }
+  .badge-entry   { background: var(--green-dark); color: var(--green-light); }
+  .badge-premium { background: rgba(26,46,26,0.85); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.4); }
+  .badge-flagship { background: var(--gold); color: var(--green-dark); }
+
+  .prod-content { padding: 28px 32px; display: flex; flex-direction: column; justify-content: space-between; }
+  .prod-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .prod-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; color: var(--green-accent); text-transform: uppercase; }
+  .prod-line { width: 20px; height: 1px; background: rgba(26,46,26,0.15); }
+  .prod-cat { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; color: var(--text-light); text-transform: uppercase; }
+  .prod-content h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.15rem, 2vw, 1.6rem); font-weight: 900; color: var(--green-dark); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 6px; }
+  .prod-tagline { font-size: 0.8rem; color: var(--green-accent); font-style: italic; margin-bottom: 12px; }
+  .prod-desc { font-size: 0.83rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; font-weight: 300; }
+
+  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
+  .spec-item { background: var(--cream); border: 1px solid rgba(26,46,26,0.07); border-radius: 8px; padding: 8px 12px; }
+  .spec-lbl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 2px; }
+  .spec-val { font-size: 0.8rem; font-weight: 600; color: var(--green-dark); }
+
+  .feat-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+  .feat-pill { background: var(--cream-dark); border: 1px solid rgba(26,46,26,0.08); font-size: 0.7rem; font-weight: 500; color: var(--text-mid); padding: 3px 10px; border-radius: 100px; }
+
+  /* ── QTY ── */
+  .qty-wrap { border-top: 1px solid rgba(26,46,26,0.07); padding-top: 16px; display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .qty-lbl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px; }
+  .qty-controls { display: flex; }
+  .qty-btn {
+    width: 34px; height: 34px; background: var(--cream-dark); border: 1px solid rgba(26,46,26,0.14);
+    color: var(--green-dark); font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s; user-select: none; line-height: 1;
+  }
+  .qty-btn:first-child { border-radius: 6px 0 0 6px; }
+  .qty-btn:last-child  { border-radius: 0 6px 6px 0; }
+  .qty-btn:hover { background: var(--green-dark); color: var(--cream); border-color: var(--green-dark); }
+  .qty-input {
+    width: 58px; height: 34px; background: var(--white);
+    border: 1px solid rgba(26,46,26,0.14); border-left: none; border-right: none;
+    color: var(--green-dark); font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; text-align: center; outline: none; -moz-appearance: textfield;
+  }
+  .qty-input::-webkit-outer-spin-button,
+  .qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .qty-info { text-align: right; }
+  .qty-retail-lbl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light); margin-bottom: 2px; }
+  .qty-strike { font-size: 0.8rem; color: var(--text-light); text-decoration: line-through; }
+  .qty-price  { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 900; color: var(--green-dark); letter-spacing: -0.01em; }
+  .qty-margin { font-size: 0.72rem; color: var(--green-accent); font-weight: 600; margin-top: 2px; }
+  .qty-tier-txt { font-size: 0.68rem; color: var(--text-light); margin-top: 1px; }
+
+  /* ── PREMIUM PAIR ── */
+  .premium-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-bottom: 52px; }
+  .premium-card {
+    background: var(--white); border: 1px solid rgba(26,46,26,0.08);
+    border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
+    transition: all 0.25s; position: relative;
+  }
+  .premium-card:hover { border-color: var(--green-accent); box-shadow: 0 6px 24px rgba(26,46,26,0.08); }
+  .premium-card.has-qty { border-color: var(--green-accent); box-shadow: 0 4px 20px rgba(74,140,63,0.15); }
+
+  /* FIX: taller image, object-position top so greenhouse is visible */
+  .prem-image { height: 320px; overflow: hidden; background: #0d1a0d; }
+  .prem-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transition: transform 0.6s; }
+  .premium-card:hover .prem-image img { transform: scale(1.04); }
+
+  .prem-content { padding: 24px 26px; flex: 1; display: flex; flex-direction: column; }
+  .prem-content h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 900; color: var(--green-dark); letter-spacing: -0.01em; margin-bottom: 4px; }
+  .prem-tagline { font-size: 0.76rem; color: var(--green-accent); font-style: italic; margin-bottom: 11px; }
+  .prem-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.7; font-weight: 300; margin-bottom: 14px; }
+  .prem-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  .prem-features { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .prem-features .feat-pill { font-size: 0.66rem; padding: 3px 9px; }
+  .prem-qty-wrap { border-top: 1px solid rgba(26,46,26,0.07); padding-top: 14px; margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+  /* ── STICKY DEAL BAR ── */
+  .deal-bar {
+    position: sticky; bottom: 0; z-index: 150;
+    background: var(--green-dark); border-top: 2px solid rgba(201,168,76,0.35);
+  }
+  .deal-bar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: stretch; min-height: 72px; padding: 0 48px; }
+  .deal-empty { display: flex; align-items: center; gap: 12px; padding: 18px 0; width: 100%; }
+  .deal-empty-dot { width: 7px; height: 7px; border: 1px solid rgba(245,240,232,0.2); border-radius: 50%; }
+  .deal-empty-txt { font-size: 0.82rem; color: rgba(245,240,232,0.38); font-weight: 300; }
+  .deal-empty-txt strong { color: rgba(245,240,232,0.58); font-weight: 500; }
+  .deal-filled { display: none; align-items: stretch; width: 100%; }
+  .deal-bar.active .deal-empty  { display: none; }
+  .deal-bar.active .deal-filled { display: flex; }
+  .deal-col { padding: 12px 20px; border-right: 1px solid rgba(245,240,232,0.08); display: flex; flex-direction: column; justify-content: center; }
+  .deal-col:first-child { padding-left: 0; }
+  .deal-col:last-child  { border-right: none; }
+  .deal-col-lbl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.35); margin-bottom: 3px; }
+  .deal-col-val { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); letter-spacing: -0.01em; }
+  .deal-col-val.gold  { color: var(--gold-light); }
+  .deal-col-val.green { color: var(--green-light); }
+  .deal-col-sub { font-size: 0.62rem; color: rgba(245,240,232,0.38); margin-top: 1px; }
+  .deal-col-sub.green { color: var(--green-light); opacity: 0.85; }
+  .deal-breakdown { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 8px 0; border-right: 1px solid rgba(245,240,232,0.08); }
+  .bk-row { display: flex; align-items: center; gap: 8px; padding: 1px 20px; font-size: 0.7rem; color: rgba(245,240,232,0.45); }
+  .bk-row.hidden { display: none; }
+  .bk-name { flex: 1; }
+  .bk-qty  { width: 30px; text-align: center; font-weight: 600; color: rgba(245,240,232,0.6); }
+  .bk-price{ width: 76px; text-align: right; font-weight: 600; color: var(--cream); }
+  .tier-pill { display: inline-block; padding: 2px 9px; border-radius: 100px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; margin-top: 3px; }
+  .tp-t1 { background: rgba(74,140,63,0.25); color: var(--green-light); border: 1px solid rgba(123,191,106,0.4); }
+  .tp-t2 { background: rgba(123,191,106,0.2); color: #b8eaa0; border: 1px solid rgba(184,234,160,0.4); }
+  .tp-t3 { background: rgba(201,168,76,0.2); color: var(--gold-light); border: 1px solid rgba(232,201,106,0.4); }
+
+  /* ── FOOTER ── */
+  .footer-cta { background: var(--green-dark); padding: 52px 48px; text-align: center; }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  .footer-cta h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
+  .footer-cta p { font-size: 0.9rem; color: rgba(245,240,232,0.62); max-width: 460px; margin: 0 auto; font-weight: 300; line-height: 1.7; }
+
+  /* ── FADE ── */
+  .fade-up { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 860px) {
+    header, .hero { padding-left: 20px; padding-right: 20px; }
+    .tier-section, .products-section, .products-section-alt, .footer-cta { padding-left: 20px; padding-right: 20px; }
+    .stats-row { grid-template-columns: repeat(2,1fr); }
+    .tier-grid { grid-template-columns: 1fr; }
+    .product-card { grid-template-columns: 1fr; }
+    .prod-image { height: 220px; }
+    .premium-pair { grid-template-columns: 1fr; }
+    .prem-image { height: 260px; }
+    .deal-bar-inner { padding: 0 20px; }
+    .deal-breakdown { display: none; }
+    .footer-cta { padding: 36px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="data:image/png;base64,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" alt="YourGreenhouses">
+    <span class="logo-text">YourGreenhouses</span>
+  </div>
+  <div class="header-badge">Dealer Product Lineup</div>
+</header>
+
+<!-- HERO -->
+<section class="hero fade-up visible">
+  <div class="hero-label">Exclusive Dealer Program — Product Overview</div>
+  <h1>Three Greenhouses.<br><em>One Portfolio</em> That Sells Itself.</h1>
+  <p style="margin-top:14px;">
+    <strong>100,000+ units sold.</strong> 4.7 stars across 2,300+ reviews.
+    <strong>$3M+ moved online every month.</strong> Your customers are already buying — just not from you.
+  </p>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-row">
+    <div class="stat"><div class="stat-number">100K+</div><div class="stat-label">US Units Sold</div></div>
+    <div class="stat"><div class="stat-number">4.7★</div><div class="stat-label">2,300+ Reviews</div></div>
+    <div class="stat"><div class="stat-number">$3M+</div><div class="stat-label">Online / Month</div></div>
+    <div class="stat"><div class="stat-number">15yr</div><div class="stat-label">Manufacturing</div></div>
+  </div>
+</div>
+
+<!-- TIER LEGEND -->
+<div class="tier-section fade-up">
+  <div class="tier-inner">
+    <span class="section-label">Dealer Tier Structure</span>
+    <h2 class="section-title">The More You Move,<br>The More You Keep.</h2>
+    <p class="section-body">Three tiers. One structure. Tier is based on your total combined units across all products. Select quantities below to see your tier unlock in real time.</p>
+    <div class="section-divider"></div>
+    <div class="tier-grid">
+      <div class="tier-card" id="legend-t1">
+        <div class="tier-card-name">Authorized Reseller</div>
+        <div class="tier-card-range">25 – 49 units combined</div>
+        <div class="tier-card-margin">35% <span>margin off retail</span></div>
+      </div>
+      <div class="tier-card" id="legend-t2">
+        <div class="tier-card-name">Preferred Dealer</div>
+        <div class="tier-card-range">50 – 99 units combined</div>
+        <div class="tier-card-margin">40% <span>margin off retail</span></div>
+      </div>
+      <div class="tier-card" id="legend-t3">
+        <div class="tier-card-name">Regional Owner</div>
+        <div class="tier-card-range">100+ units combined</div>
+        <div class="tier-card-margin">45% <span>margin off retail</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POLYCARBONATE -->
+<div class="products-section fade-up">
+  <div class="products-inner">
+    <span class="section-label">Volume Driver</span>
+    <h2 class="section-title">The Workhorse That Pays For Everything.</h2>
+    <p class="section-body">Your entry point. The world's most proven greenhouse kit. Already in 100K+ backyards across the US.</p>
+    <div class="section-divider"></div>
+
+    <div class="product-card" id="card-poly">
+      <div class="prod-image">
+        <img src="https://yourgreenhouses.com/cdn/shop/files/IMG_4183Large.jpg?v=1716099065&width=1100" alt="Polycarbonate Greenhouse" loading="lazy">
+        <div class="prod-badge badge-entry">Entry Tier</div>
+      </div>
+      <div class="prod-content">
+        <div>
+          <div class="prod-meta">
+            <span class="prod-num">01</span>
+            <div class="prod-line"></div>
+            <span class="prod-cat">Polycarbonate</span>
+          </div>
+          <h3>World's Most Popular Polycarbonate Greenhouse</h3>
+          <div class="prod-tagline">Proven. The world's best-selling greenhouse kit. Starts at 13'.</div>
+          <p class="prod-desc">Double-wall polycarbonate on a galvanized steel frame. Built for every climate. Every customer asking about growing space is a buyer for this unit.</p>
+          <div class="specs-grid">
+            <div class="spec-item"><div class="spec-lbl">Width</div><div class="spec-val">9.84 ft (3m)</div></div>
+            <div class="spec-item"><div class="spec-lbl">Height</div><div class="spec-val">6.56 ft (2m)</div></div>
+            <div class="spec-item"><div class="spec-lbl">Length</div><div class="spec-val">13 ft</div></div>
+            <div class="spec-item"><div class="spec-lbl">Wind Rating</div><div class="spec-val">65 mph</div></div>
+            <div class="spec-item"><div class="spec-lbl">Snow Load</div><div class="spec-val">32 psf (3 ft)</div></div>
+            <div class="spec-item"><div class="spec-lbl">Warranty</div><div class="spec-val">10yr frame / 5yr panel</div></div>
+          </div>
+          <div class="feat-pills">
+            <span class="feat-pill">🏭 Walmart Supplier</span>
+            <span class="feat-pill">☀️ UV Protected</span>
+            <span class="feat-pill">❄️ Cold Climate Ready</span>
+            <span class="feat-pill">🚚 Free US Shipping</span>
+          </div>
+        </div>
+        <div class="qty-wrap">
+          <div>
+            <div class="qty-lbl">Units in Your Order</div>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty('poly',-1)">−</button>
+              <input class="qty-input" type="number" id="qty-poly" value="0" min="0" oninput="updateCalc('poly')">
+              <button class="qty-btn" onclick="changeQty('poly',1)">+</button>
+            </div>
+          </div>
+          <div class="qty-info">
+            <div class="qty-retail-lbl">Your Deal</div>
+            <div class="qty-strike" id="strike-poly">—</div>
+            <div class="qty-price" id="price-poly">—</div>
+            <div class="qty-margin" id="margin-poly">Select quantity above</div>
+            <div class="qty-tier-txt" id="tiertxt-poly"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PREMIUM LINE -->
+<div class="products-section-alt fade-up">
+  <div class="products-inner">
+    <span class="section-label">Premium Collection</span>
+    <h2 class="section-title">The Upsell That Doubles Your Ticket.</h2>
+    <p class="section-body">Glass. Scandinavian design. For the customer who wants a greenhouse that says something about who they are.</p>
+    <div class="section-divider"></div>
+
+    <div class="premium-pair">
+
+      <!-- SCANDIGLAS -->
+      <div class="premium-card" id="card-scandi">
+        <div class="prem-image">
+          <img src="https://yourgreenhouses.com/cdn/shop/files/ClassicPremiumAccoya01.jpg?v=1768845495&width=1100" alt="Scandiglas" loading="lazy">
+          <div class="prod-badge badge-premium" style="top:14px;left:14px;">Glass Premium</div>
+        </div>
+        <div class="prem-content">
+          <div class="prod-meta" style="margin-bottom:10px;">
+            <span class="prod-num">02</span>
+            <div class="prod-line"></div>
+            <span class="prod-cat">Scandiglas with Accoya</span>
+          </div>
+          <h3>Scandiglas</h3>
+          <div class="prem-tagline">7× stronger glass. Accoya wood accents. 12-year warranty.</div>
+          <p class="prem-desc">Premium aluminum frame with tempered safety glass. Accoya wood detailing gives it a warm, architectural look high-end customers respond to immediately. Sliding doors, integrated gutter. The greenhouse they'll brag about.</p>
+          <div class="prem-specs">
+            <div class="spec-item"><div class="spec-lbl">Width</div><div class="spec-val">7.7 ft / 10.2 ft</div></div>
+            <div class="spec-item"><div class="spec-lbl">Wind Rating</div><div class="spec-val">115 mph</div></div>
+            <div class="spec-item"><div class="spec-lbl">Glazing</div><div class="spec-val">Tempered 0.16"</div></div>
+            <div class="spec-item"><div class="spec-lbl">Warranty</div><div class="spec-val">12-year</div></div>
+          </div>
+          <div class="prem-features">
+            <span class="feat-pill">7× Stronger Glass</span>
+            <span class="feat-pill">Accoya Accents</span>
+            <span class="feat-pill">Sliding Doors</span>
+            <span class="feat-pill">95% Light</span>
+            <span class="feat-pill">30+ yr Panels</span>
+          </div>
+          <div class="prem-qty-wrap">
+            <div>
+              <div class="qty-lbl">Units in Your Order</div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('scandi',-1)">−</button>
+                <input class="qty-input" type="number" id="qty-scandi" value="0" min="0" oninput="updateCalc('scandi')">
+                <button class="qty-btn" onclick="changeQty('scandi',1)">+</button>
+              </div>
+            </div>
+            <div class="qty-info">
+              <div class="qty-retail-lbl">Your Deal</div>
+              <div class="qty-strike" id="strike-scandi">—</div>
+              <div class="qty-price" id="price-scandi">—</div>
+              <div class="qty-margin" id="margin-scandi">Select quantity above</div>
+              <div class="qty-tier-txt" id="tiertxt-scandi"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NORDWOOD -->
+      <div class="premium-card" id="card-nord">
+        <div class="prem-image">
+          <img src="https://yourgreenhouses.com/cdn/shop/files/Frame8.jpg?v=1770393178&width=1100" alt="Nordwood" loading="lazy">
+          <div class="prod-badge badge-flagship" style="top:14px;left:14px;">Flagship</div>
+        </div>
+        <div class="prem-content">
+          <div class="prod-meta" style="margin-bottom:10px;">
+            <span class="prod-num">03</span>
+            <div class="prod-line"></div>
+            <span class="prod-cat">Nordwood</span>
+          </div>
+          <h3>Nordwood</h3>
+          <div class="prem-tagline">Nordic spruce. Tempered glass. A garden room, not just a greenhouse.</div>
+          <p class="prem-desc">FSC®-certified Nordic spruce, pressure-treated. Tempered glass. 214 sq ft at 9.44 ft ridge height. A lifestyle structure your high-ticket customers won't hesitate on.</p>
+          <div class="prem-specs">
+            <div class="spec-item"><div class="spec-lbl">Dimensions</div><div class="spec-val">17.81' × 13.81'</div></div>
+            <div class="spec-item"><div class="spec-lbl">Area</div><div class="spec-val">214 sq ft</div></div>
+            <div class="spec-item"><div class="spec-lbl">Ridge Height</div><div class="spec-val">9.44 ft</div></div>
+            <div class="spec-item"><div class="spec-lbl">Warranty</div><div class="spec-val">5-year</div></div>
+          </div>
+          <div class="prem-features">
+            <span class="feat-pill">FSC® Certified</span>
+            <span class="feat-pill">Tempered Glass</span>
+            <span class="feat-pill">Walk-In Comfort</span>
+            <span class="feat-pill">95% Light</span>
+            <span class="feat-pill">Rot Resistant</span>
+          </div>
+          <div class="prem-qty-wrap">
+            <div>
+              <div class="qty-lbl">Units in Your Order</div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('nord',-1)">−</button>
+                <input class="qty-input" type="number" id="qty-nord" value="0" min="0" oninput="updateCalc('nord')">
+                <button class="qty-btn" onclick="changeQty('nord',1)">+</button>
+              </div>
+            </div>
+            <div class="qty-info">
+              <div class="qty-retail-lbl">Your Deal</div>
+              <div class="qty-strike" id="strike-nord">—</div>
+              <div class="qty-price" id="price-nord">—</div>
+              <div class="qty-margin" id="margin-nord">Select quantity above</div>
+              <div class="qty-tier-txt" id="tiertxt-nord"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-cta fade-up">
+  <div class="footer-inner">
+    <h2>Lock in your territory now.</h2>
+    <p>One exclusive dealer per county.</p>
+  </div>
+</div>
+
+<!-- STICKY DEAL BAR -->
+<div class="deal-bar" id="deal-bar">
+  <div class="deal-bar-inner">
+    <div class="deal-empty">
+      <div class="deal-empty-dot"></div>
+      <div class="deal-empty-txt">Select quantities above — <strong>your deal summary will appear here.</strong></div>
+    </div>
+    <div class="deal-filled" id="deal-filled">
+      <div class="deal-col" style="min-width:155px;">
+        <div class="deal-col-lbl">Active Tier</div>
+        <div class="deal-col-val" id="sum-tier">—</div>
+        <div id="sum-tier-pill"></div>
+      </div>
+      <div class="deal-breakdown">
+        <div class="bk-row hidden" id="bk-poly">
+          <span class="bk-name">Polycarbonate</span>
+          <span class="bk-qty" id="bk-poly-qty"></span>
+          <span class="bk-price" id="bk-poly-price"></span>
+        </div>
+        <div class="bk-row hidden" id="bk-scandi">
+          <span class="bk-name">Scandiglas</span>
+          <span class="bk-qty" id="bk-scandi-qty"></span>
+          <span class="bk-price" id="bk-scandi-price"></span>
+        </div>
+        <div class="bk-row hidden" id="bk-nord">
+          <span class="bk-name">Nordwood</span>
+          <span class="bk-qty" id="bk-nord-qty"></span>
+          <span class="bk-price" id="bk-nord-price"></span>
+        </div>
+      </div>
+      <div class="deal-col" style="min-width:130px;">
+        <div class="deal-col-lbl">Total Retail</div>
+        <div class="deal-col-val" id="sum-retail">—</div>
+        <div class="deal-col-sub">Full retail value</div>
+      </div>
+      <div class="deal-col" style="min-width:130px;">
+        <div class="deal-col-lbl">Your Discount</div>
+        <div class="deal-col-val gold" id="sum-discount">—</div>
+        <div class="deal-col-sub" id="sum-disc-pct">Off retail</div>
+      </div>
+      <div class="deal-col" style="min-width:130px;">
+        <div class="deal-col-lbl">Total Investment</div>
+        <div class="deal-col-val" id="sum-total">—</div>
+        <div class="deal-col-sub">What you pay</div>
+      </div>
+      <div class="deal-col" style="min-width:140px; border-right:none;">
+        <div class="deal-col-lbl">Your Gross Margin</div>
+        <div class="deal-col-val green" id="sum-margin-val">—</div>
+        <div class="deal-col-sub green" id="sum-margin-sub">On this order</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const PRODUCTS = {
+    poly:   { retail: 2657 },
+    scandi: { retail: 8283 },
+    nord:   { retail: 14400 }
+  };
+
+  const TIERS = [
+    { min: 100, pct: 0.45, name: 'Regional Owner',      cls: 'tp-t3', legendId: 'legend-t3' },
+    { min: 50,  pct: 0.40, name: 'Preferred Dealer',    cls: 'tp-t2', legendId: 'legend-t2' },
+    { min: 25,  pct: 0.35, name: 'Authorized Reseller', cls: 'tp-t1', legendId: 'legend-t1' },
+    { min: 0,   pct: 0,    name: null,                  cls: '',      legendId: null }
+  ];
+
+  function getTier(qty) { return TIERS.find(t => qty >= t.min); }
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+  function changeQty(p, d) {
+    const el = document.getElementById('qty-' + p);
+    el.value = Math.max(0, (parseInt(el.value) || 0) + d);
+    updateCalc(p);
+  }
+
+  function updateCalc(p) {
+    const qty         = Math.max(0, parseInt(document.getElementById('qty-' + p).value) || 0);
+    const retail      = PRODUCTS[p].retail;
+    const tier        = getTier(qty);
+    const pct         = tier.pct;
+    const totalRetail = retail * qty;
+    const totalCost   = retail * (1 - pct) * qty;
+    const totalMargin = totalRetail - totalCost;
+
+    document.getElementById('card-' + p).classList.toggle('has-qty', qty > 0);
+
+    const strikeEl = document.getElementById('strike-'  + p);
+    const priceEl  = document.getElementById('price-'   + p);
+    const marginEl = document.getElementById('margin-'  + p);
+    const tierEl   = document.getElementById('tiertxt-' + p);
+
+    if (qty === 0) {
+      strikeEl.textContent = '—'; priceEl.textContent = '—';
+      marginEl.textContent = 'Select quantity above'; tierEl.textContent = '';
+    } else if (pct === 0) {
+      strikeEl.textContent = fmt(totalRetail) + ' retail';
+      priceEl.textContent  = 'Below min. tier';
+      marginEl.textContent = 'Add ' + (25 - qty) + ' more to unlock pricing';
+      tierEl.textContent   = qty + ' units selected';
+    } else {
+      strikeEl.textContent = fmt(totalRetail) + ' retail';
+      priceEl.textContent  = fmt(totalCost);
+      marginEl.textContent = '+' + fmt(totalMargin) + ' gross margin';
+      tierEl.textContent   = tier.name + ' · ' + (pct * 100).toFixed(0) + '% off retail';
+    }
+
+    updateSummary();
+    highlightLegend();
+  }
+
+  function highlightLegend() {
+    const total    = ['poly','scandi','nord'].reduce((sum, p) => sum + (parseInt(document.getElementById('qty-'+p).value)||0), 0);
+    const dominant = getTier(total);
+    TIERS.forEach(t => { if (t.legendId) document.getElementById(t.legendId).classList.remove('active-tier'); });
+    if (dominant.legendId) document.getElementById(dominant.legendId).classList.add('active-tier');
+  }
+
+  function updateSummary() {
+    const keys = ['poly', 'scandi', 'nord'];
+    const qtys = {};
+    let totalUnits = 0;
+    let anyQty = false;
+
+    // Collect all quantities and sum them
+    keys.forEach(p => {
+      const qty = Math.max(0, parseInt(document.getElementById('qty-' + p).value) || 0);
+      qtys[p] = qty;
+      totalUnits += qty;
+      if (qty > 0) anyQty = true;
+    });
+
+    // Tier is based on TOTAL units across all products combined
+    const topTier = getTier(totalUnits);
+
+    const bar = document.getElementById('deal-bar');
+    if (!anyQty) { bar.classList.remove('active'); return; }
+    bar.classList.add('active');
+
+    // Second pass — calculate totals using the unified top tier
+    let grandRetail = 0, grandCost = 0;
+    keys.forEach(p => {
+      const qty    = qtys[p];
+      const retail = PRODUCTS[p].retail;
+      const pct    = topTier.pct;
+      const tR     = retail * qty;
+      const tC     = retail * (1 - pct) * qty;
+
+      grandRetail += tR;
+      grandCost   += tC;
+
+      // Update per-product card display using unified tier
+      if (qty > 0 && pct > 0) {
+        document.getElementById('margin-'  + p).textContent = '+' + fmt(tR - tC) + ' gross margin';
+        document.getElementById('tiertxt-' + p).textContent = topTier.name + ' · ' + (pct * 100).toFixed(0) + '% off retail';
+        document.getElementById('price-'   + p).textContent = fmt(tC);
+        document.getElementById('strike-'  + p).textContent = fmt(tR) + ' retail';
+      }
+
+      // Breakdown row
+      const row = document.getElementById('bk-' + p);
+      row.classList.toggle('hidden', qty === 0);
+      if (qty > 0) {
+        document.getElementById('bk-' + p + '-qty').textContent   = qty + '×';
+        document.getElementById('bk-' + p + '-price').textContent = pct > 0 ? fmt(tC) : 'No tier';
+      }
+    });
+
+    const grandMargin = grandRetail - grandCost;
+    const discPct     = grandRetail > 0 ? ((grandMargin / grandRetail) * 100).toFixed(0) : 0;
+
+    // Tier label
+    document.getElementById('sum-tier').textContent = topTier.pct > 0 ? topTier.name : 'Below Min. Tier';
+    const pillEl = document.getElementById('sum-tier-pill');
+    pillEl.innerHTML = topTier.cls
+      ? `<span class="tier-pill ${topTier.cls}">${(topTier.pct * 100).toFixed(0)}% margin</span>`
+      : '';
+
+    // Summary columns — now four separate values
+    document.getElementById('sum-retail').textContent     = fmt(grandRetail);
+    document.getElementById('sum-discount').textContent   = topTier.pct > 0 ? fmt(grandMargin) + ' off' : '—';
+    document.getElementById('sum-disc-pct').textContent   = topTier.pct > 0 ? discPct + '% off retail' : 'Reach 25+ units to unlock';
+    document.getElementById('sum-total').textContent      = topTier.pct > 0 ? fmt(grandCost) : '—';
+    document.getElementById('sum-margin-val').textContent = topTier.pct > 0 ? fmt(grandMargin) : '—';
+    document.getElementById('sum-margin-sub').textContent = topTier.pct > 0 ? discPct + '% gross margin' : 'No tier unlocked yet';
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
